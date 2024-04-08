@@ -17,16 +17,27 @@ function handleFormSubmit(event) {
     event.preventDefault();
     const referralLinkInput = document.getElementById('referralLink');
     const referralLink = referralLinkInput.value.trim();
-    if (referralLink !== '') {
+    if (referralLink !== '' && !referralLinks.includes(referralLink)) {
         referralLinks.push(referralLink);
         referralLinkInput.value = '';
+        updateCurrentReferral();
+        $('#addLinkModal').modal('hide');
+    }
+}
+
+// Function to handle "Get Link" button click
+function handleGetLinkClick() {
+    if (referralLinks.length > 0) {
         updateCurrentReferral();
     }
 }
 
-// Add event listener to form submission
+// Add event listeners
 const referralForm = document.getElementById('referralForm');
 referralForm.addEventListener('submit', handleFormSubmit);
+
+const getLinkBtn = document.getElementById('getLinkBtn');
+getLinkBtn.addEventListener('click', handleGetLinkClick);
 
 // Call updateCurrentReferral initially
 updateCurrentReferral();
