@@ -1,1 +1,0 @@
-artsev.github.io
